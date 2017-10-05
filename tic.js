@@ -21,6 +21,7 @@ function main () {
 
         var winner = computerMode(board, parseInt(towin))
         if (winner !== 'Quit' && winner !== 'Tie') { console.log(winner + ' wins!!') }
+        if (winner === 'Tie') { console.log('It is a tie!!') }
 
         var e = new Date()
         var endTime = e.getTime()
