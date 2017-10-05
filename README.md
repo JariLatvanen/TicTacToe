@@ -1,5 +1,5 @@
 # TicTacToe
-Front-end training home assignment
+Front-end Master class home assignment
 
 # First uploaded version
 - Game board is dynamic and asked from the user (N x M). The board size must be at least 3 x 3.
