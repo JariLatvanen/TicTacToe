@@ -1,3 +1,9 @@
+/**
+ * @fileOverview A TicTacToe game written as a course assignment for Front-end Master class
+ * @author Jari Latvanen
+ * @version 1.0
+ */
+
 'use strict'
 
 var readlineSync = require('readline-sync')
@@ -47,7 +53,13 @@ function main () {
   } while (ask('Quit? (Y/N)', 'Y/N', '^[YN]$') !== 'Y')
 }
 
-// human against computer
+/**
+ * Human against computer
+ * @param {Array} board - The game board.
+ * @param {Number} towin - How many symbols in a row is needed to win the game.
+ * @return {String} 'Player', 'Computer' or 'Tie' depending on who wins
+ */
+// 
 function computerMode (board, towin) {
   var move = ''
   var mover = ''
@@ -141,7 +153,13 @@ function computerMode (board, towin) {
   } while (move !== '00')
 }
 
-// human against human
+/**
+ * Human against human
+ * @param {Array} board - The game board.
+ * @param {Number} towin - How many symbols in a row is needed to win the game.
+ * @return {String} 'Tie' if it is a tie. Otherwise return nothing.
+ */
+// 
 function humanMode (board, towin) {
   var move = ''
   var mover = ''
@@ -157,6 +175,7 @@ function humanMode (board, towin) {
       movec = move[1] - 1
     } while (board[mover][movec] === 'X' || board[mover][movec] === 'O') // is the square empty?
 
+    // evaluate if the move is a winning move or a tie
     board[mover][movec] = 'X'
     printBoard(board)
     res = checkResult(board, winrow, 'X')
@@ -193,7 +212,13 @@ function humanMode (board, towin) {
   } while (move !== '00')
 }
 
-// evaluate the board: rows, columns and diagonals
+/**
+ * Evaluate the board: rows, columns and diagonals
+ * @param {Array} board - The game board.
+ * @param {Number} winrow - How many symbols in a row is needed to win the game.
+ * @param {String} char - Evaluate for player 'X' or 'O'.
+ * @return {Number} boardvalue - How good is the position? >100 is a win. -1 is a tie
+ */
 function checkResult (board, winrow, char) {
   var boardvalue = 0
   var res = 0
@@ -217,7 +242,13 @@ function checkResult (board, winrow, char) {
   return boardvalue
 }
 
-// how many in a row?
+/**
+ * Calculate max number of players symbol in a row
+ * @param {Array} board - The game board.
+ * @param {Number} winrow - How many symbols in a row is needed to win the game.
+ * @param {String} char - Evaluate for player 'X' or 'O'.
+ * @return {Number} maxinrow - max number of players symbol in a row
+ */
 function checkInrow (board, winrow, char) {
   var inrow = 0
   var maxinrow = 0
@@ -238,7 +269,14 @@ function checkInrow (board, winrow, char) {
   return maxinrow
 }
 
-// how many in a column?
+/**
+ * Calculate max number of players symbol in a column
+ * @param {Array} board - The game board.
+ * @param {Number} winrow - How many symbols in a row is needed to win the game.
+ * @param {String} char - Evaluate for player 'X' or 'O'.
+ * @return {Number} maxincol - max number of players symbol in a column
+ */
+
 function checkIncol (board, winrow, char) {
   var incol = 0
   var maxincol = 0
@@ -260,7 +298,13 @@ function checkIncol (board, winrow, char) {
   return maxincol
 }
 
-// how many in a diagonal?
+/**
+ * Calculate max number of players symbol in a diagonal (left to right, top to bottom)
+ * @param {Array} board - The game board.
+ * @param {Number} winrow - How many symbols in a row is needed to win the game.
+ * @param {String} char - Evaluate for player 'X' or 'O'.
+ * @return {Number} maxindiag - max number of players symbol in a diagonal
+ */
 function checkIndiag (board, winrow, char) {
   var maxindiag = 0
   for (let r = 0; r < board.length - winrow + 1; r = r + 1) {
@@ -284,7 +328,14 @@ function checkIndiag (board, winrow, char) {
   return maxindiag
 }
 
-// how many in a reverse diagonal?
+/**
+ * Calculate max number of players symbol in a reverse diagonal (right to right, top to bottom)
+ * @param {Array} board - The game board.
+ * @param {Number} winrow - How many symbols in a row is needed to win the game.
+ * @param {String} char - Evaluate for player 'X' or 'O'.
+ * @return {Number} maxindiagr - max number of players symbol in a reverse diagonal
+ */
+
 function checkIndiagr (board, winrow, char) {
   var maxindiagr = 0
   var indiagr = 0
@@ -307,7 +358,11 @@ function checkIndiagr (board, winrow, char) {
   return maxindiagr
 }
 
-// is it a tie??
+/**
+ * Calculate if the position is a tie
+ * @param {Array} board - The game board.
+ * @return {Boolean} true if it is a tie and false otherwise
+ */
 function checkTie (board) {
   var maxmoves = board.length * board[1].length
   var moves = 0
@@ -322,7 +377,13 @@ function checkTie (board) {
   } else { return false }
 }
 
-// empty board
+/**
+ * Clear the board fo a new game
+ * @param {Number} row - How many rows wanted in the board.
+ * @param {Number} col - How many columns wanted in the board.
+ * @return {Array} board - a new gameboard
+ */
+
 function initBoard (row, col) {
   var board = new Array(row)
   for (var i = 0; i < row; i++) {
@@ -337,7 +398,11 @@ function initBoard (row, col) {
   return board
 }
 
-// output board
+/**
+ * Print the current game
+ * @param {Array} board - The game board.
+ */
+
 function printBoard (board) {
   for (let r = 0; r < board.length; r = r + 1) {
     var string = ''
@@ -348,7 +413,13 @@ function printBoard (board) {
   }
 }
 
-// read user input
+/**
+ * Read user input
+ * @param {String} question - Prompt the user with this question.
+ * @param {String} errormsg - Output this if the response was invalid.
+ * @param {String} reg - Regexp used to validate the user response.
+ * @return {String} value - The users validated response
+ */
 function ask (question, errormsg, reg) {
   var regex = new RegExp(reg)
   var value = ''
