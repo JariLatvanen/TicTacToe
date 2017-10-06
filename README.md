@@ -1,10 +1,10 @@
 # TicTacToe
-Front-end Master class home assignment
+Front-end Master class home assignment by Jari Latvanen
 
 The source code and documentation is located at:
 https://github.com/JariLatvanen/TicTacToe
 
-# First uploaded version
+# Version 1.0
 - Game board is dynamic and asked from the user (N x M). The board size must be at least 3 x 3.
 - Ask from the user how many game pieces must be next to each other to win (for example 3 in a row, 5 in a row etc). 
 - The game can be played in 2 player mode where there are 2 humans playing
@@ -15,5 +15,9 @@ https://github.com/JariLatvanen/TicTacToe
 - No high score for human-human or when computer wins.
 - High score not stored to file yet.
   
-  
+# JSDoc
+
+The package also contains JSDoc documentation in a zipped folder
+
+
   
